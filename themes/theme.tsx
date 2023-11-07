@@ -1,9 +1,5 @@
 import { extendTheme } from "@chakra-ui/react";
-import { breakpoints } from "./foundation/breakpoints";
-// import "@fontsource/lemonada";
+import { breakpoints } from "./breakpoints";
+import { fonts } from "./fonts";
 
-// const fonts = {
-//     heading: `'Lemonada', sans-serif`,
-// }
-
-export default extendTheme({ breakpoints });
+export default extendTheme({ breakpoints ,fonts});

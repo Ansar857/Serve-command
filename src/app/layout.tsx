@@ -1,7 +1,7 @@
 // app/layout.tsx
 "use client"
 
-import { Providers } from "./Provider";
+import { Providers } from "./provider";
 import Sidebar from "./components/Sidebar";
 import '../app/globals.css'
 import { Box } from "@chakra-ui/react";
@@ -16,7 +16,7 @@ export default function RootLayout({
         <Providers>
           <Box display={'flex'}>
 
-          <Sidebar/>
+          {/* <Sidebar/> */}
           {children}
           </Box>
         </Providers>

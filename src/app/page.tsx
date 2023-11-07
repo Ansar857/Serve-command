@@ -6,9 +6,10 @@ import ImportDialogueBox from "./components/ImportDialogueBox";
 export default function Home() {
   return (
     <Box>
+      
       <Title/>
       <Card/>
-      {/* <ImportDialogueBox/> */}
+      
     </Box>
     
     )

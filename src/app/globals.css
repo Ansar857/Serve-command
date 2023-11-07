@@ -2,7 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 
-
-body {
-    background-color: #F7FAFC; /* Replace with your desired background color */
-  }
