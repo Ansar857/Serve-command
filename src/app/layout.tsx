@@ -14,7 +14,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providers>
-          <Box display={'flex'}>
+          <Box display={'flex'}
+          height={'1080'}
+          width={'1920'}>
 
           <Sidebar/>
           {children}
