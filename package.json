@@ -21,11 +21,13 @@
     "@fontsource/inter": "^5.0.15",
     "aws-amplify": "^5.3.11",
     "aws-sdk": "^2.1489.0",
+    "axios": "^1.6.0",
     "framer-motion": "^10.16.4",
     "next": "14.0.1",
     "react": "^18",
     "react-dom": "^18",
-    "react-icons": "^4.11.0"
+    "react-icons": "^4.11.0",
+    "react-query": "^3.39.3"
   },
   "devDependencies": {
     "@types/node": "^20",

@@ -27,7 +27,7 @@ const ImportDialogueBox = () => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
-  const isSubmitDisabled = !selectedFile
+  const isSubmitDisabled = !selectedFile;
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
@@ -53,16 +53,16 @@ const ImportDialogueBox = () => {
         justifyContent={"center"}
         alignItems={"center"}
         gap={"8px"}
-        border={"1px"}
+        border={"1px solid var(--primary-main, #11190C)"}
         borderRadius={"6px"}
         onClick={onOpen}
       >
         <Box width={"14px"} height={"14px"}>
-          <HiDownload />
+          <Image src="/upload_icon.svg" />
         </Box>
         <Text
-          color={"#11190C"}
-          fontFamily={""}
+          color={"var(--primary-main, #11190C)"}
+          fontFamily={"Inter"}
           fontSize={"14px"}
           fontStyle={"normal"}
           fontWeight={"600"}
@@ -151,7 +151,7 @@ const ImportDialogueBox = () => {
                   <Text
                     alignSelf={"stretch"}
                     color={"var(--text-primary, rgba(0, 0, 0, 0.87))"}
-                    fontFamily={""}
+                    fontFamily={"Inter"}
                     fontSize={"24px"}
                     fontStyle={"normal"}
                     fontWeight={"500"}
@@ -164,7 +164,7 @@ const ImportDialogueBox = () => {
                     height={"22px"}
                     alignSelf={"stretch"}
                     color={"var(--black-alpha-700, rgba(0, 0, 0, 0.64))"}
-                    fontFamily={""}
+                    fontFamily={"Inter"}
                     fontSize={"16px"}
                     fontStyle={"normal"}
                     fontWeight={"400"}
@@ -202,7 +202,7 @@ const ImportDialogueBox = () => {
                   >
                     <Text
                       color={"var(--black-alpha-900, rgba(0, 0, 0, 0.92))"}
-                      fontFamily={""}
+                      fontFamily={"Inter"}
                       fontSize={"16px"}
                       fontStyle={"normal"}
                       fontWeight={"500"}
@@ -214,7 +214,7 @@ const ImportDialogueBox = () => {
                     <Text
                       alignSelf={"stretch"}
                       color={"var(--black-alpha-700, rgba(0, 0, 0, 0.64))"}
-                      fontFamily={""}
+                      fontFamily={"Inter"}
                       fontSize={"16px"}
                       fontStyle={"normal"}
                       fontWeight={"400"}
@@ -236,7 +236,7 @@ const ImportDialogueBox = () => {
                   >
                     <Text
                       color={"var(--black-alpha-900, rgba(0, 0, 0, 0.92))"}
-                      fontFamily={""}
+                      fontFamily={"Inter"}
                       fontSize={"16px"}
                       fontStyle={"normal"}
                       fontWeight={"500"}
@@ -248,7 +248,7 @@ const ImportDialogueBox = () => {
                     <Text
                       alignSelf={"stretch"}
                       color={"var(--black-alpha-700, rgba(0, 0, 0, 0.64))"}
-                      fontFamily={""}
+                      fontFamily={"Inter"}
                       fontSize={"16px"}
                       fontStyle={"normal"}
                       fontWeight={"400"}
@@ -270,7 +270,7 @@ const ImportDialogueBox = () => {
                   >
                     <Text
                       color={"var(--black-alpha-900, rgba(0, 0, 0, 0.92))"}
-                      fontFamily={""}
+                      fontFamily={"Inter"}
                       fontSize={"16px"}
                       fontStyle={"normal"}
                       fontWeight={"500"}
@@ -290,7 +290,8 @@ const ImportDialogueBox = () => {
                       gap={"10px"}
                       alignSelf={"stretch"}
                       borderRadius={"8px"}
-                      border={"2px dashed var(--black-alpha-300, rgba(0, 0, 0, 0.16))"
+                      border={
+                        "2px dashed var(--black-alpha-300, rgba(0, 0, 0, 0.16))"
                       }
                       background={"var(--gray-0, #F7F7FA)"}
                     >
@@ -303,97 +304,108 @@ const ImportDialogueBox = () => {
                       />
                       {selectedFile ? (
                         <>
-                        {/* Box */}
-                        <Box
-                        display={'flex'}
-                        flexDirection={'column'}
-                        justifyContent={'center'}
-                        alignItems={'center'}
-                        gap={'10px'}
-                        alignSelf={'stretch'}
-                        padding={'24px 10px'}
-                        >
-
+                          {/* Box */}
                           <Box
                             display={"flex"}
                             flexDirection={"column"}
+                            justifyContent={"center"}
                             alignItems={"center"}
-                            gap={"8px"}
-                            
+                            gap={"10px"}
+                            alignSelf={"stretch"}
+                            padding={"24px 10px"}
                           >
-                            {/* Avatar Box */}
                             <Box
                               display={"flex"}
                               flexDirection={"column"}
-                              justifyContent={"center"}
-                              alignItems={"centre"}
-                              borderRadius={"100px"}
-                              background={"var(--green-600, #25855A)"}
-                              padding={'8px'}
+                              alignItems={"center"}
+                              gap={"8px"}
+                            >
+                              {/* Avatar Box */}
+                              <Box
+                                display={"flex"}
+                                flexDirection={"column"}
+                                justifyContent={"center"}
+                                alignItems={"centre"}
+                                borderRadius={"100px"}
+                                background={"var(--green-600, #25855A)"}
+                                padding={"8px"}
                               >
-
-                                
-
-                            {/* Icon */}
+                                {/* Icon */}
                                 <Box
-                                display={'flex'}
-                                alignItems={'flex-start'}
-                                left={'8px'}
-                                right={'8px'}>
-                                <Image 
-                                src="/check_circle.svg" alt = "check circle logo" height={'24px'} width={'24px'}/>
+                                  display={"flex"}
+                                  alignItems={"flex-start"}
+                                  left={"8px"}
+                                  right={"8px"}
+                                >
+                                  <Image
+                                    src="/check_circle.svg"
+                                    alt="check circle logo"
+                                    height={"24px"}
+                                    width={"24px"}
+                                  />
                                 </Box>
+                              </Box>
+
+                              {/* Title */}
+                              <Box
+                                display={"flex"}
+                                alignItems={"centre"}
+                                gap={"4px"}
+                              >
+                                <Text
+                                  color={
+                                    "var(--text-primary, rgba(0, 0, 0, 0.87))"
+                                  }
+                                  fontFamily={"Inter"}
+                                  fontSize={"18px"}
+                                  fontStyle={"normal"}
+                                  fontWeight={"500"}
+                                  lineHeight={"20px"}
+                                >
+                                  File Successfully Uploaded
+                                </Text>
+                              </Box>
                             </Box>
-
-                            {/* Title */}
+                            {/* Button */}
                             <Box
-                            display={'flex'}
-                            alignItems={'centre'}
-                            gap={'4px'}>
+                              display={"flex"}
+                              height={"24px"}
+                              padding={"0px 8px"}
+                              justifyContent={"center"}
+                              alignItems={"center"}
+                              gap="6px"
+                              borderRadius={"39px"}
+                              border={"1px solid var(--green-500, #38A169)"}
+                              background={"var(--white, #FFF)"}
+                            >
                               <Text
-                              color={'var(--text-primary, rgba(0, 0, 0, 0.87))'}
-                              fontFamily={''}
-                              fontSize={'18px'}
-                              fontStyle={'normal'}
-                              fontWeight={'500'}
-                              lineHeight={'20px'}>File Successfully Uploaded</Text>
-
+                                color={"var(--green-500, #38A169)"}
+                                font-family={"Inter"}
+                                font-size={"12px"}
+                                font-style={"normal"}
+                                font-weight={"600"}
+                                line-height={"16px"}
+                              >
+                                {selectedFile.name}
+                              </Text>
+                              <Button
+                                onClick={handleClear}
+                                display="inline-flex"
+                                alignItems="center"
+                                justifyContent="center"
+                                p={"0.5"}
+                                height="auto"
+                                minWidth={"auto"}
+                              >
+                                <Image
+                                  src="/xclose.svg"
+                                  alt="close icon"
+                                  width={"12px"}
+                                  height={"12px"}
+                                />
+                              </Button>
                             </Box>
                           </Box>
-                        {/* Button */}
-                        <Box
-                        display={'flex'}
-                        height={'24px'}
-                        padding={'0px 8px'}
-                        justifyContent={'center'}
-                        alignItems={'center'} 
-                        gap = '6px'
-                        borderRadius={'39px'}
-                        border= {"1px solid var(--green-500, #38A169)"}
-                        background={"var(--white, #FFF)"}>
-
-                          <Text
-                          color= {"var(--green-500, #38A169)"}
-                          font-family ={"Inter"}
-                          font-size={"12px"}
-                          font-style= {"normal"}
-                          font-weight= {"600"}
-                          line-height= {"16px"}>
-                            {selectedFile.name}
-                          </Text>
-                          <Button
-                          onClick={handleClear}
-                          display="inline-flex"
-                          alignItems="center"
-                          justifyContent="center"
-                          p={'0.5'}
-                          height="auto"
-                          minWidth={'auto'}
-                          >
-                        <Image src="/xclose.svg" alt = "close icon" width={'12px'} height = {"12px"} />
-                          </Button>
-                        </Box>
-                        </Box>
                         </>
                       ) : (
                         <Button
@@ -411,7 +423,7 @@ const ImportDialogueBox = () => {
                         >
                           <Text
                             color={"var(--primary-main, #11190C)"}
-                            fontFamily={""}
+                            fontFamily={"Inter"}
                             fontSize={"16px"}
                             fontStyle={"normal"}
                             fontWeight={"600"}
@@ -431,6 +443,7 @@ const ImportDialogueBox = () => {
               <Box
                 display={"flex"}
                 alignItems={"flex-start"}
+                alignContent={'center'}
                 gap={"16px"}
                 alignSelf={"stretch"}
               >
@@ -446,6 +459,7 @@ const ImportDialogueBox = () => {
                   border={"1px solid var(--gray-200, #E2E8F0)"}
                   ref={cancelRef}
                   onClick={onClose}
+                  fontFamily={"Inter"}
                 >
                   Cancel
                 </Button>
@@ -459,10 +473,10 @@ const ImportDialogueBox = () => {
                   alignItems={"center"}
                   gap={"8px"}
                   borderRadius={"6px"}
-                  
-                  backgroundColor={isSubmitDisabled ? '#EDF2F7' : '#FFFFFF'}
-                  
-                  onClick={handleSubmit} isDisabled={isSubmitDisabled}
+                  fontFamily={"Inter"}
+                  backgroundColor={isSubmitDisabled ? "#EDF2F7" : "#FFFFFF"}
+                  onClick={handleSubmit}
+                  isDisabled={isSubmitDisabled}
                 >
                   Begin Import
                 </Button>
