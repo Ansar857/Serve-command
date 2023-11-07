@@ -2,16 +2,15 @@
 import { Box, Image, Input, Text, chakra } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import {
-  CognitoIdentityProviderClient,
-  InitiateAuthCommand,
-  RespondToAuthChallengeCommand,
-} from "@aws-sdk/client-cognito-identity-provider";
+import {CognitoIdentityProviderClient,InitiateAuthCommand,RespondToAuthChallengeCommand,} from "@aws-sdk/client-cognito-identity-provider";
 
 const clientId = "1727702mdj4021tmc218s3efab"; // Replace with your App Client ID
 const cognitoClient = new CognitoIdentityProviderClient({
   region: "us-east-1",
 }); // Replace with your AWS region
+
+
+                    // USE STATES
 
 const page = () => {
   const [username, setUsername] = useState("");
@@ -22,6 +21,10 @@ const page = () => {
   const [challengeParams, setChallengeParams] = useState<any>({});
   const [message, setMessage] = useState("");
   const router = useRouter();
+
+
+
+  // HANDELING SING IN //
 
   const handleSignIn = async () => {
     try {
@@ -41,8 +44,6 @@ const page = () => {
         setChallengeParams(authResponse.ChallengeParameters);
         setSession(authResponse.Session);
       } else {
-        // setSession(authResponse.Session);
-
         setMessage("Login successful.");
         console.log("Login Successful");
         router.push("/");
