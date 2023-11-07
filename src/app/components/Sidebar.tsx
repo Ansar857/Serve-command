@@ -9,10 +9,8 @@ const Sidebar = () => {
     height={{'2xl' :'1080px'}}
     alignItems={'flex-start'}
     flexShrink={'0'}
-  borderRight={{'2xl' : '1px'}}
-    borderColor={'blackAlpha.200'}
-    background={'whiteAlpha.900'}>
-
+  borderRight={{'2xl' : '1px solid var(--black-alpha-200, rgba(0, 0, 0, 0.08))'}}
+    >
     <Box 
     display={'flex'}
     width={{ "2xl" : "56px"}}
