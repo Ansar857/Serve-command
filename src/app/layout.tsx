@@ -16,7 +16,7 @@ export default function RootLayout({
         <Providers>
           <Box display={'flex'}>
 
-          {/* <Sidebar/> */}
+          <Sidebar/>
           {children}
           </Box>
         </Providers>
