@@ -29,7 +29,7 @@ const ImportDialogueBox = () => {
 
   const isSubmitDisabled = !selectedFile;
 
-  const [file, setFile] = useState<File | null>(null);
+  // const [file, setFile] = useState<File | null>(null);
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
     if (file) {
@@ -42,21 +42,21 @@ const ImportDialogueBox = () => {
     // };
 
     const handleFileUpload = async () => {
-        if (!file) {
+        if (!selectedFile) {
             alert("Please select a file to upload");
             return;
         }
 
         try {
             const response = await fetch(
-                `https://zp2dhmgwaa.execute-api.us-east-1.amazonaws.com/generatepresignedurl?fileName=${file.name}&contentType=text/plain`
+                `https://zp2dhmgwaa.execute-api.us-east-1.amazonaws.com/generatepresignedurl?fileName=${selectedFile.name}&contentType=text/plain`
             );
             const data = await response.json();
             console.log(data)
             if (data.uploadUrl) {
                 const uploadResponse = await fetch(data.uploadUrl, {
                     method: "PUT",
-                    body: file,
+                    body: selectedFile,
                 });
 
                 if (uploadResponse.ok) {

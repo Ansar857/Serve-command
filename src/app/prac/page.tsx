@@ -5,6 +5,7 @@ import { useState } from "react";
 
 const Home = () => {
     const [file, setFile] = useState<File | null>(null);
+
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFile = event.target.files && event.target.files[0];
         setFile(selectedFile);
