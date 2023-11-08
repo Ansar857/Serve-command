@@ -62,6 +62,7 @@ const ImportDialogueBox = () => {
                 if (uploadResponse.ok) {
                     // alert("File uploaded successfully!");
                     onClose()
+                    handleClear()
                 } else {
                     alert("File upload failed");
                 }
