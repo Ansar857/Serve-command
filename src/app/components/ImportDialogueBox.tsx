@@ -29,12 +29,50 @@ const ImportDialogueBox = () => {
 
   const isSubmitDisabled = !selectedFile;
 
+  const [file, setFile] = useState<File | null>(null);
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
     if (file) {
       setSelectedFile(file);
     }
   };
+    // const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     const selectedFile = event.target.files && event.target.files[0];
+    //     setFile(selectedFile);
+    // };
+
+    const handleFileUpload = async () => {
+        if (!file) {
+            alert("Please select a file to upload");
+            return;
+        }
+
+        try {
+            const response = await fetch(
+                `https://zp2dhmgwaa.execute-api.us-east-1.amazonaws.com/generatepresignedurl?fileName=${file.name}&contentType=text/plain`
+            );
+            const data = await response.json();
+            console.log(data)
+            if (data.uploadUrl) {
+                const uploadResponse = await fetch(data.uploadUrl, {
+                    method: "PUT",
+                    body: file,
+                });
+
+                if (uploadResponse.ok) {
+                    alert("File uploaded successfully!");
+                } else {
+                    alert("File upload failed");
+                }
+            } else {
+                alert("Failed to get pre-signed URL");
+            }
+        } catch (error) {
+            console.error("Error uploading file:", error);
+            alert("An error occurred while uploading the file.");
+        }
+    };
+
 
   const handleClear = () => {
     setSelectedFile(null);
@@ -380,11 +418,11 @@ const ImportDialogueBox = () => {
                             >
                               <Text
                                 color={"var(--green-500, #38A169)"}
-                                font-family={"Inter"}
-                                font-size={"12px"}
-                                font-style={"normal"}
-                                font-weight={"600"}
-                                line-height={"16px"}
+                                fontFamily={"Inter"}
+                                fontSize={"12px"}
+                                fontStyle={"normal"}
+                                fontWeight={"600"}
+                                lineHeight={"16px"}
                               >
                                 {selectedFile.name}
                               </Text>
@@ -475,7 +513,7 @@ const ImportDialogueBox = () => {
                   borderRadius={"6px"}
                   fontFamily={"Inter"}
                   backgroundColor={isSubmitDisabled ? "#EDF2F7" : "#FFFFFF"}
-                  onClick={handleSubmit}
+                  onClick={handleFileUpload}
                   isDisabled={isSubmitDisabled}
                 >
                   Begin Import
