@@ -10,6 +10,7 @@ const Sidebar = () => {
     alignItems={'flex-start'}
     flexShrink={'0'}
   borderRight={{'2xl' : '1px solid var(--black-alpha-200, rgba(0, 0, 0, 0.08))'}}
+  // paddingBottom={'24px'}
     >
     <Box 
     display={'flex'}
@@ -84,7 +85,7 @@ const Sidebar = () => {
         {/* Lower div */}
         <Box
         display={'flex'}
-        paddingBottom={{'2xl' :'0px'}}
+        paddingBottom={{'2xl' :'24px'}}
         flexDirection={'column'}
         alignItems={'center'}
         gap={{'2xl' :'24px'}}
