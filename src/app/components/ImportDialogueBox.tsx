@@ -498,7 +498,7 @@ const ImportDialogueBox = () => {
                   borderRadius={"6px"}
                   border={"1px solid var(--gray-200, #E2E8F0)"}
                   ref={cancelRef}
-                  onClick={onClose}
+                  onClick={() => {handleClear(); onClose;}}
                   fontFamily={"Inter"}
                 >
                   Cancel
