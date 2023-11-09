@@ -515,12 +515,6 @@ const ImportDialogueBox = () => {
       </AlertDialog>
     </>
   );
-  function handleSubmit() {
-    if (selectedFile) {
-      // Perform your submit logic here
-      console.log("File submitted:", selectedFile);
-    }
-  }
 };
 
 export default ImportDialogueBox;
