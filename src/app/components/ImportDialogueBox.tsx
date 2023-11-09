@@ -13,7 +13,6 @@ import {
 import React, { useRef, useState } from "react";
 
 const ImportDialogueBox = () => {
-
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef: any = React.useRef();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -27,42 +26,40 @@ const ImportDialogueBox = () => {
       setSelectedFile(file);
     }
   };
-    
 
-    const handleFileUpload = async () => {
-        if (!selectedFile) {
-            alert("Please select a file to upload");
-            return;
+  const handleFileUpload = async () => {
+    if (!selectedFile) {
+      alert("Please select a file to upload");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `https://zp2dhmgwaa.execute-api.us-east-1.amazonaws.com/generatepresignedurl?fileName=${selectedFile.name}&contentType=text/plain`
+      );
+      const data = await response.json();
+      console.log(data);
+      if (data.uploadUrl) {
+        const uploadResponse = await fetch(data.uploadUrl, {
+          method: "PUT",
+          body: selectedFile,
+        });
+
+        if (uploadResponse.ok) {
+          console.log("File uploaded successfully!");
+          onClose();
+          handleClear();
+        } else {
+          alert("File upload failed");
         }
-
-        try {
-            const response = await fetch(
-                `https://zp2dhmgwaa.execute-api.us-east-1.amazonaws.com/generatepresignedurl?fileName=${selectedFile.name}&contentType=text/plain`
-            );
-            const data = await response.json();
-            console.log(data)
-            if (data.uploadUrl) {
-                const uploadResponse = await fetch(data.uploadUrl, {
-                    method: "PUT",
-                    body: selectedFile,
-                });
-
-                if (uploadResponse.ok) {
-                     console.log("File uploaded successfully!");
-                    onClose()
-                    handleClear()
-                } else {
-                    alert("File upload failed");
-                }
-            } else {
-                alert("Failed to get pre-signed URL");
-            }
-        } catch (error) {
-            console.error("Error uploading file:", error);
-            alert("An error occurred while uploading the file.");
-        }
-    };
-
+      } else {
+        alert("Failed to get pre-signed URL");
+      }
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      alert("An error occurred while uploading the file.");
+    }
+  };
 
   const handleClear = () => {
     setSelectedFile(null);
@@ -471,7 +468,7 @@ const ImportDialogueBox = () => {
               <Box
                 display={"flex"}
                 alignItems={"flex-start"}
-                alignContent={'center'}
+                alignContent={"center"}
                 gap={"16px"}
                 alignSelf={"stretch"}
               >
@@ -486,7 +483,10 @@ const ImportDialogueBox = () => {
                   borderRadius={"6px"}
                   border={"1px solid var(--gray-200, #E2E8F0)"}
                   ref={cancelRef}
-                  onClick={() => {handleClear(); onClose();}}
+                  onClick={() => {
+                    handleClear();
+                    onClose();
+                  }}
                   fontFamily={"Inter"}
                 >
                   Cancel
