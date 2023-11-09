@@ -6,6 +6,7 @@ import Sidebar from "./components/Sidebar";
 export default function Home() {
   return (
     <Box display={"flex"}>
+
       {/* Side bar */}
       <Box>
         <Sidebar />
