@@ -18,7 +18,7 @@ const page = () => {
   const [newPassword, setNewPassword] = useState("");
   const [session, setSession] = useState("");
   const [challengeName, setChallengeName] = useState<string | null>(null);
-  const [challengeParams, setChallengeParams] = useState<any>({});
+  // const [challengeParams, setChallengeParams] = useState<any>({});
   const [message, setMessage] = useState("");
   const router = useRouter();
 
@@ -36,12 +36,13 @@ const page = () => {
           PASSWORD: password,
         },
       });
+     
 
       const authResponse: any = await cognitoClient.send(authCommand);
 
       if (authResponse.ChallengeName) {
         setChallengeName(authResponse.ChallengeName);
-        setChallengeParams(authResponse.ChallengeParameters);
+        // setChallengeParams(authResponse.ChallengeParameters);
         setSession(authResponse.Session);
       } else {
         setMessage("Login successful.");
