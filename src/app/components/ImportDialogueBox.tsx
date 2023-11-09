@@ -8,25 +8,16 @@ import {
   AlertDialog,
   AlertDialogOverlay,
   AlertDialogContent,
-  AlertDialogHeader,
-  AlertDialogCloseButton,
-  AlertDialogBody,
-  AlertDialogFooter,
   Input,
-  Flex,
-  IconButton,
 } from "@chakra-ui/react";
-import { CloseIcon } from "@chakra-ui/icons";
-import { HiDownload } from "react-icons/hi";
 import React, { useRef, useState } from "react";
 
 const ImportDialogueBox = () => {
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef: any = React.useRef();
-
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-
   const isSubmitDisabled = !selectedFile;
 
   // const [file, setFile] = useState<File | null>(null);
@@ -36,10 +27,7 @@ const ImportDialogueBox = () => {
       setSelectedFile(file);
     }
   };
-    // const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     const selectedFile = event.target.files && event.target.files[0];
-    //     setFile(selectedFile);
-    // };
+    
 
     const handleFileUpload = async () => {
         if (!selectedFile) {
@@ -60,7 +48,7 @@ const ImportDialogueBox = () => {
                 });
 
                 if (uploadResponse.ok) {
-                    // alert("File uploaded successfully!");
+                     console.log("File uploaded successfully!");
                     onClose()
                     handleClear()
                 } else {
