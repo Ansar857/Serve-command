@@ -13,12 +13,17 @@ import {
 import React, { useRef, useState } from "react";
 
 const ImportDialogueBox = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+// const { isOpen, onOpen, onClose } = useDisclosure();
+const [open , setOpen] = useState(true);
   const cancelRef: any = React.useRef();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const isSubmitDisabled = !selectedFile;
 
+
+const handleClose = () =>{
+  setOpen(false)
+}
   // const [file, setFile] = useState<File | null>(null);
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
@@ -47,7 +52,7 @@ const ImportDialogueBox = () => {
 
         if (uploadResponse.ok) {
           console.log("File uploaded successfully!");
-          onClose();
+          handleClose();
           handleClear();
         } else {
           alert("File upload failed");
@@ -71,36 +76,12 @@ const ImportDialogueBox = () => {
   return (
     <>
       {/* Card Button */}
-      <Button
-        display={"flex"}
-        height={"32px"}
-        padding={"0px 12px"}
-        justifyContent={"center"}
-        alignItems={"center"}
-        gap={"8px"}
-        border={"1px solid var(--primary-main, #11190C)"}
-        borderRadius={"6px"}
-        onClick={onOpen}
-      >
-        <Box width={"14px"} height={"14px"}>
-          <Image src="/upload_icon.svg" />
-        </Box>
-        <Text
-          color={"var(--primary-main, #11190C)"}
-          fontFamily={"Inter"}
-          fontSize={"14px"}
-          fontStyle={"normal"}
-          fontWeight={"600"}
-          lineHeight={"20px"}
-        >
-          Import
-        </Text>
-      </Button>
+    
       <AlertDialog
         motionPreset="slideInBottom"
         leastDestructiveRef={cancelRef}
-        onClose={onClose}
-        isOpen={isOpen}
+        onClose={handleClose}
+        isOpen={open}
         isCentered
       >
         <AlertDialogOverlay />
@@ -485,7 +466,7 @@ const ImportDialogueBox = () => {
                   ref={cancelRef}
                   onClick={() => {
                     handleClear();
-                    onClose();
+                    handleClose();
                   }}
                   fontFamily={"Inter"}
                 >

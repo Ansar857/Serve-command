@@ -1,5 +1,6 @@
 import { Box, Button, Image, Text } from "@chakra-ui/react";
 import ImportDialogueBox from "./ImportDialogueBox";
+import CategorySelection from "./CategorySelection";
 
 const Card = () => {
   return (
@@ -63,7 +64,9 @@ const Card = () => {
               </Box>
 
               {/* Card Button */}
-              <ImportDialogueBox />
+              {/* <ImportDialogueBox /> */}
+              <CategorySelection/>
+
             </Box>
           </Box>
 

@@ -3,15 +3,24 @@ import { Box, Button, chakra, Image, Text , useDisclosure, AlertDialog , AlertDi
 import { useState } from "react";
 import React from "react";
 import Sidebar from "../components/Sidebar";
+import ImportDialogueBox from "./ImportDialogueBox";
 
-const page = () => {
+const CategorySelection = () => {
   const [isAdded, setIsAdded] = useState(false);
   const [isAdded2, setIsAdded2] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isHovered2, setIsHovered2] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef: any = React.useRef();
+  const [render , setRender] = useState();
 //   const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+const [isOpenComponent, setIsOpenComponent] = useState(false);
+
+const openSecond = () => {
+  setIsOpenComponent(true);
+};
+
 
   // For Selection 1 category
 
@@ -48,13 +57,38 @@ const page = () => {
   };
   return (
       <>
+      <Button
+        display={"flex"}
+        height={"32px"}
+        padding={"0px 12px"}
+        justifyContent={"center"}
+        alignItems={"center"}
+        gap={"8px"}
+        border={"1px solid var(--primary-main, #11190C)"}
+        borderRadius={"6px"}
+        onClick={onOpen}
+      >
+        <Box width={"14px"} height={"14px"}>
+          <Image src="/upload_icon.svg" />
+        </Box>
+        <Text
+          color={"var(--primary-main, #11190C)"}
+          fontFamily={"Inter"}
+          fontSize={"14px"}
+          fontStyle={"normal"}
+          fontWeight={"600"}
+          lineHeight={"20px"}
+        >
+          Import
+        </Text>
+      </Button>
         {/* <Sidebar/> */}
     <AlertDialog
-        motionPreset="slideInBottom"
-        leastDestructiveRef={cancelRef}
-        onClose={onClose}
-        isOpen={true}
-        isCentered
+           motionPreset="slideInBottom"
+           leastDestructiveRef={cancelRef}
+           onClose={onClose}
+           isOpen={isOpen}
+           isCentered
       >
         <AlertDialogOverlay />
         <AlertDialogContent
@@ -616,7 +650,11 @@ const page = () => {
                     fontWeight={"600"}
                     lineHeight={"20px"}
                     ref={cancelRef}
-                    onClick={()=>{onClose()}}
+                    onClick={()=>{
+                    onClose(),
+                    handleRemoveClick(),
+                    handleRemoveClick2()
+                    }}
                   >
                     Cancel
                   </Text>
@@ -635,6 +673,11 @@ const page = () => {
                   border={"1px solid var(--gray-200, #E2E8F0)"}
                   isDisabled={isAdded || isAdded2 ? false : true}
                   backgroundColor={"#EDF2F7"}
+                  onClick={()=>{ 
+                    openSecond(),
+                    onClose(),
+                    handleRemoveClick(),
+                    handleRemoveClick2()}}
                 >
                   <Text
                     color={"var(--black-alpha-900, rgba(0, 0, 0, 0.92))"}
@@ -653,10 +696,11 @@ const page = () => {
         </Box>
         </AlertDialogContent>
       </AlertDialog>
+      {isOpenComponent && <ImportDialogueBox/>}
      {/* Main */}
     </>
 
   );
 };
 
-export default page;
+export default CategorySelection;
