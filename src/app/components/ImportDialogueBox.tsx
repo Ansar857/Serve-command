@@ -11,19 +11,15 @@ import {
   Input,
 } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
+import CategorySelection from "./CategorySelection";
 
-const ImportDialogueBox = () => {
-// const { isOpen, onOpen, onClose } = useDisclosure();
-const [open , setOpen] = useState(true);
+const ImportDialogueBox = ({onClose}:any) => {
+  // const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef: any = React.useRef();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const isSubmitDisabled = !selectedFile;
 
-
-const handleClose = () =>{
-  setOpen(false)
-}
   // const [file, setFile] = useState<File | null>(null);
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
@@ -52,7 +48,7 @@ const handleClose = () =>{
 
         if (uploadResponse.ok) {
           console.log("File uploaded successfully!");
-          handleClose();
+          onClose();
           handleClear();
         } else {
           alert("File upload failed");
@@ -76,12 +72,36 @@ const handleClose = () =>{
   return (
     <>
       {/* Card Button */}
-    
-      <AlertDialog
+      {/* <Button
+        display={"flex"}
+        height={"32px"}
+        padding={"0px 12px"}
+        justifyContent={"center"}
+        alignItems={"center"}
+        gap={"8px"}
+        border={"1px solid var(--primary-main, #11190C)"}
+        borderRadius={"6px"}
+        onClick={onOpen}
+      >
+        <Box width={"14px"} height={"14px"}>
+          <Image src="/upload_icon.svg" />
+        </Box>
+        <Text
+          color={"var(--primary-main, #11190C)"}
+          fontFamily={"Inter"}
+          fontSize={"14px"}
+          fontStyle={"normal"}
+          fontWeight={"600"}
+          lineHeight={"20px"}
+        >
+          Import
+        </Text>
+      </Button> */}
+      {/* <AlertDialog
         motionPreset="slideInBottom"
         leastDestructiveRef={cancelRef}
-        onClose={handleClose}
-        isOpen={open}
+        onClose={onClose}
+        isOpen={isOpen}
         isCentered
       >
         <AlertDialogOverlay />
@@ -90,6 +110,8 @@ const handleClose = () =>{
           justifyContent={"center"}
           alignItems={"center"}
         >
+        </AlertDialogContent>
+      </AlertDialog> */}
           <Box
             display={"flex"}
             width={"900px"}
@@ -466,7 +488,7 @@ const handleClose = () =>{
                   ref={cancelRef}
                   onClick={() => {
                     handleClear();
-                    handleClose();
+                    onClose();
                   }}
                   fontFamily={"Inter"}
                 >
@@ -492,8 +514,6 @@ const handleClose = () =>{
               </Box>
             </Box>
           </Box>
-        </AlertDialogContent>
-      </AlertDialog>
     </>
   );
 };

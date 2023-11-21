@@ -47,23 +47,7 @@ const page = () => {
     setIsAdded2(true);
   };
   return (
-      <>
-      
-        {/* <Sidebar/> */}
-    <AlertDialog
-        motionPreset="slideInBottom"
-        leastDestructiveRef={cancelRef}
-        onClose={onClose}
-        isOpen={true}
-        isCentered
-      >
-        <AlertDialogOverlay />
-        <AlertDialogContent
-          display={"flex"}
-          justifyContent={"center"}
-          alignItems={"center"}>
-
-        <Box>
+      <Box>
           {/* Serivce Category Selection Box */}
           <Box
             display={"flex"}
@@ -652,10 +636,6 @@ const page = () => {
             </Box>
           </Box>
         </Box>
-        </AlertDialogContent>
-      </AlertDialog>
-     {/* Main */}
-    </>
 
   );
 };
