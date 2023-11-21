@@ -2,7 +2,6 @@
 import { Box, Button, chakra, Image, Text , useDisclosure, AlertDialog , AlertDialogOverlay , AlertDialogContent} from "@chakra-ui/react";
 import { useState } from "react";
 import React from "react";
-import Sidebar from "../components/Sidebar";
 import ImportDialogueBox from "./ImportDialogueBox";
 
 const CategorySelection = () => {
@@ -13,13 +12,11 @@ const CategorySelection = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isFileUpload , setIsFileUpload] = useState(false)
   const cancelRef: any = React.useRef();
-//   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
 
 const SetFileUpload = () => {
   setIsFileUpload(true)
 }
-
   // For Selection 1 category
 
   const handleMouseEnter = () => {

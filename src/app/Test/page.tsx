@@ -11,6 +11,9 @@ const page = () => {
   const [isHovered2, setIsHovered2] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef: any = React.useRef();
+  const [serviceCatId, setServiceCatId] = useState("");
+  const [companyId, setCompanyId] = useState("");
+  const [serviceCatName, setServiceCatName] = useState("");
 //   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   // For Selection 1 category
