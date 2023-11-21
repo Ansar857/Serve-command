@@ -1,7 +1,9 @@
 import { Box, Heading } from "@chakra-ui/react";
 import Title from "./components/Title";
 import Card from "./components/Card";
+import Test from "./components/test";
 import Sidebar from "./components/Sidebar";
+
 
 export default function Home() {
   return (
@@ -14,8 +16,9 @@ export default function Home() {
 
       {/* Components */}
       <Box>
-        <Title />
-        <Card />
+        {/* <Title /> */}
+        {/* <Card /> */}
+        <Test/>
       </Box>
     </Box>
   );
