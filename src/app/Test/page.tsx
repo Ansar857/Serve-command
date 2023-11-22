@@ -121,7 +121,7 @@ const Page = () => {
             lineHeight={"24px"}
             _hover={{ background: "none" }}
           >
-            Change Password
+            Change
           </chakra.button>
         </Box>
       </Flex>
