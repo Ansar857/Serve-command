@@ -1,5 +1,6 @@
 'use client'
 import { Box ,  Image , Text , Input , chakra } from "@chakra-ui/react"
+import Link from "next/link";
 import React, {useState} from "react";
 
 const page = () => {
@@ -169,6 +170,7 @@ const page = () => {
           </chakra.button>
 
           {/* Back to login Button */}
+          <Link href={'/login'}>
           <chakra.button
           display={'flex'}
           height={'40px'}
@@ -188,6 +190,7 @@ const page = () => {
             lineHeight={'24px'}>
               Back to log in</Text>
           </chakra.button>
+          </Link>
 
 
         </Box>

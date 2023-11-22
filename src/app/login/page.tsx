@@ -3,6 +3,8 @@ import { Box, Image, Input, Text, chakra } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import {CognitoIdentityProviderClient,InitiateAuthCommand,RespondToAuthChallengeCommand,} from "@aws-sdk/client-cognito-identity-provider";
+import { Router } from "next/router";
+import Link from "next/link";
 
 const clientId = "1727702mdj4021tmc218s3efab"; // Replace with your App Client ID
 const cognitoClient = new CognitoIdentityProviderClient({
@@ -82,24 +84,16 @@ const page = () => {
   };
 
   return (
+
     <Box
       display={"flex"}
-      flexDirection={"column"}
-      margin={"auto"}
-      alignItems={"center"}
-      justifyContent={"center"}
-      height={"100vh"}
-    >
+      width={'1920px'}
+      padding={'349px 0px 337px 0px'}
+      justifyContent={'center'}
+      alignItems={'center'}
+      background={'var(--gray-50, #F7FAFC)'}>
       <Box
-        display={"flex"}
-        width={{ "2xl": "1440px" }}
-        height={{ "2xl": "960px" }}
-        padding={{ "2xl": "48px 32px" }}
-        flexDirection={"column"}
-        justifyContent={"center"}
-        alignItems={"center"}
-        gap={{ "2xl": "32px" }}
-        background={"var(--base-white, #FFF)"}
+       
       >
         {/* ############# CONTNENT BOX  ########################## */}
 
@@ -109,6 +103,7 @@ const page = () => {
           flexDirection={"column"}
           alignItems={"center"}
           gap={{ "2xl": "32px" }}
+          flexShrink={'0'}
         >
           {/* #############   HEADER  ########################## */}
 
@@ -187,7 +182,7 @@ const page = () => {
                   lineHeight={"16px"}
                   letterSpacing={"0.3px"}
                 >
-                  Phone
+                  Phone Number
                 </Text>
 
                 {/* Input Group */}
@@ -276,9 +271,45 @@ const page = () => {
                   ></Input>
                 </Box>
               </Box>
+
+              {/* Row - Forgot Password */}
+              <Box
+              display={'flex'}
+              width={'360px'}
+              justifyContent={'flex-end'}
+              alignItems={'center'}>
+                <Link href={'/forgotPassword'}>
+                
+                  {/* Button */}
+                <chakra.button
+                display={'flex'}
+                height={'24px'}
+                padding={'0px 8px'}
+                justifyContent={'center'}
+                alignItems={'center'}
+                gap={'6px'}
+                borderRadius={'6px'}
+                onClick={()=>{
+
+                }}>
+
+                  {/* Text */}
+                  <Text
+                  color={'var(--primary-main, #11190C)'}
+                  fontFamily={'Inter'}
+                  fontSize={'12px'}
+                  fontStyle={'normal'}
+                  fontWeight={'600'}
+                  lineHeight={'16px'}>
+                    Forgot Password</Text>
+
+                </chakra.button>
+                </Link>
+
+              </Box>
             </Box>
 
-            {/* Acrtion */}
+            {/* Action */}
             <Box
               display={"flex"}
               flexDirection={"column"}
@@ -295,13 +326,18 @@ const page = () => {
                 alignItems={"center"}
                 gap={"8px"}
                 alignSelf={"stretch"}
-                color={"#fff"}
                 borderRadius={"6px"}
-                fontFamily={"Inter"}
                 backgroundColor={"var(--primary-main, #11190C)"} // Use the 'bg' prop to set the background color
                 onClick={handleSignIn}
               >
-                Sign in
+                <Text
+                color={'#FFF'}
+                fontFamily={'Inter'}
+                fontSize={'16px'}
+                fontStyle={'normal'}
+                fontWeight={'600'}
+                lineHeight={'24px'}>
+                  Sign in</Text>
               </chakra.button>
               {challengeName === "NEW_PASSWORD_REQUIRED" && (
                 <div>
