@@ -78,7 +78,10 @@ const ImportDialogueBox = ({onClose}:any) => {
     // Check if upload is complete
     if (uploadProgress === 100 && !uploadComplete) {
       // If upload is complete, set uploadComplete to true
-      setUploadComplete(true);
+      const delayTimeout = setTimeout(() => {
+        setUploadComplete(true);
+      
+      }, 1000);
     }
 
   return (
