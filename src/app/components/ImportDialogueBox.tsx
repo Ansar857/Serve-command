@@ -18,15 +18,10 @@ const ImportDialogueBox = ({onClose}:any) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const isSubmitDisabled = !selectedFile;
   const [uploadProgress, setUploadProgress] = useState<number>(0);
-  const [progressComplete , setprogressComplete] = useState(false)
+  const [uploadComplete, setUploadComplete] = useState<boolean>(false);
 
-  if (uploadProgress==100) {
-    setprogressComplete(true)
-    
-  } else {
-    console.log('error')
-    
-  }
+  
+
   // const [file, setFile] = useState<File | null>(null);
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
@@ -150,7 +145,9 @@ const ImportDialogueBox = ({onClose}:any) => {
         </Box>
       </Box>
         </Box>
-    ):
+    ): uploadComplete ? (
+      <CompleteSuccess onClose={() => setUploadComplete(false)} />
+    ) :
     (
 
           <Box
@@ -558,7 +555,6 @@ const ImportDialogueBox = ({onClose}:any) => {
             </Box>
           </Box>
     )}
-    {progressComplete && <CompleteSuccess/>}
     </>
   );
 };
