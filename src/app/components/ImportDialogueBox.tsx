@@ -137,6 +137,7 @@ const ImportDialogueBox = ({onClose}:any) => {
             borderRadius={"4px"}
             value={uploadProgress}
             colorScheme={"blackAlpha"}
+            background={'var(--primary-main, #11190C)'}
           />
         </Box>
       </Box>
