@@ -33,7 +33,6 @@ const Successfull = () => {
         isCentered
       >
         <AlertDialogOverlay />
-
         <AlertDialogContent w={{ "2xl": "432px" }} borderRadius={"24px"}>
           <Box
             display={"flex"}
