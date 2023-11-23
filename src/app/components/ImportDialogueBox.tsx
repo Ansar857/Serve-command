@@ -9,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
 import axios from "axios";
+import { CompleteSuccess } from "./CompleteSuccess";
 
 const ImportDialogueBox = ({onClose}:any) => {
   // const { isOpen, onOpen, onClose } = useDisclosure();
@@ -17,7 +18,15 @@ const ImportDialogueBox = ({onClose}:any) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const isSubmitDisabled = !selectedFile;
   const [uploadProgress, setUploadProgress] = useState<number>(0);
+  const [progressComplete , setprogressComplete] = useState(false)
 
+  if (uploadProgress==100) {
+    setprogressComplete(true)
+    
+  } else {
+    console.log('error')
+    
+  }
   // const [file, setFile] = useState<File | null>(null);
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
@@ -549,6 +558,7 @@ const ImportDialogueBox = ({onClose}:any) => {
             </Box>
           </Box>
     )}
+    {progressComplete && <CompleteSuccess/>}
     </>
   );
 };
