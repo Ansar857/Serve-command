@@ -32,7 +32,6 @@ const ImportDialogueBox = ({onClose}:any) => {
       alert("Please select a file to upload");
       return;
     }
-
     try {
       const response = await fetch(
         `https://830wrvbmz2.execute-api.us-east-1.amazonaws.com/generatepresignedurl?fileName=${selectedFile.name}&contentType=text/plain`
