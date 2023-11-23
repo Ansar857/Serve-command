@@ -9,7 +9,6 @@ import {
 } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
 import axios from "axios";
-import Card from "./Card";
 
 const ImportDialogueBox = ({onClose}:any) => {
   // const { isOpen, onOpen, onClose } = useDisclosure();
@@ -18,7 +17,6 @@ const ImportDialogueBox = ({onClose}:any) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const isSubmitDisabled = !selectedFile;
   const [uploadProgress, setUploadProgress] = useState<number>(0);
-  const [complete , setComplete] = useState(false)
 
   // const [file, setFile] = useState<File | null>(null);
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,14 +25,6 @@ const ImportDialogueBox = ({onClose}:any) => {
       setSelectedFile(file);
     }
   };
-
-  if (uploadProgress==100) {
-    setComplete(true)
-    
-  } else {
-    console.log('error')
-    
-  }
 
   const handleFileUpload = async () => {
     if (!selectedFile) {
@@ -91,7 +81,7 @@ const ImportDialogueBox = ({onClose}:any) => {
 
   return (
     <>
-    
+  
     {uploadProgress? (
       <Box
       display={"flex"}
@@ -147,8 +137,6 @@ const ImportDialogueBox = ({onClose}:any) => {
             borderRadius={"4px"}
             value={uploadProgress}
             colorScheme={"blackAlpha"}
-            // color={'var(--primary-main, #11190C)'}
-            // background={'var(--primary-main, #11190C)'}
           />
         </Box>
       </Box>
@@ -561,9 +549,6 @@ const ImportDialogueBox = ({onClose}:any) => {
             </Box>
           </Box>
     )}
-
-{complete && <Card/> }
-    
     </>
   );
 };
