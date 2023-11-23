@@ -19,7 +19,13 @@ const ImportDialogueBox = ({onClose}:any) => {
   const [uploadProgress, setUploadProgress] = useState<number>(0);
   const [uploadComplete, setUploadComplete] = useState(false);
 
-  // const [file, setFile] = useState<File | null>(null);
+
+  const handleDoneClick = () => {
+    // Reset progress and hide success box
+    setUploadProgress(0);
+    setUploadComplete(false);
+  };
+
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
     if (file) {
@@ -553,15 +559,10 @@ const ImportDialogueBox = ({onClose}:any) => {
           </Box>
     )}
     {uploadComplete && (
-          <Box
-            mt="4"
-            p="4"
-            borderRadius="8px"
-            background="green.200"
-            textAlign="center"
-          >
-            <Text>Done! Upload Completed.</Text>
-          </Box>
+          <Box>
+          <Text>Your file was successfully uploaded!</Text>
+          <Button onClick={handleDoneClick}>Done</Button>
+        </Box>
         )}
     </>
   );
