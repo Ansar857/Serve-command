@@ -7,7 +7,7 @@ import {
   Progress,
   Input,
 } from "@chakra-ui/react";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState , useEffect } from "react";
 import axios from "axios";
 
 const ImportDialogueBox = ({onClose}:any) => {
@@ -75,12 +75,16 @@ const ImportDialogueBox = ({onClose}:any) => {
     }
   };
 
-    // Check if upload is complete
-    if (uploadProgress === 100 && !uploadComplete) {
-      // If upload is complete, set uploadComplete to true
-      
-      setUploadComplete(true);
+  useEffect(() => {
+    if (uploadProgress === 100) {
+      // Add a delay before showing the success box
+      const delayTimeout = setTimeout(() => {
+        setUploadComplete(true);
+      }, 1000); // Adjust the delay as needed
+
+      return () => clearTimeout(delayTimeout);
     }
+  }, [uploadProgress]);
 
   return (
     <>
