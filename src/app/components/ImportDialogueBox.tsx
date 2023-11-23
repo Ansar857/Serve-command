@@ -36,7 +36,7 @@ const ImportDialogueBox = ({onClose}:any) => {
 
     try {
       const response = await fetch(
-        `https://zp2dhmgwaa.execute-api.us-east-1.amazonaws.com/generatepresignedurl?fileName=${selectedFile.name}&contentType=text/plain`
+        `https://830wrvbmz2.execute-api.us-east-1.amazonaws.com/generatepresignedurl?fileName=${selectedFile.name}&contentType=text/plain`
       );
       const data = await response.json();
       console.log(data);
