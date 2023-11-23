@@ -9,21 +9,15 @@ import {
 } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
 import axios from "axios";
-import { CompleteSuccess } from "./CompleteSuccess";
 
 const ImportDialogueBox = ({onClose}:any) => {
-  // const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef: any = React.useRef();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const isSubmitDisabled = !selectedFile;
   const [uploadProgress, setUploadProgress] = useState<number>(0);
-  const [uploadComplete, setUploadComplete] = useState<boolean>(false);
 
 
-  
-
-  // const [file, setFile] = useState<File | null>(null);
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
     if (file) {
@@ -44,10 +38,6 @@ const ImportDialogueBox = ({onClose}:any) => {
       const data = await response.json();
       console.log(data);
       if (data.uploadUrl) {
-        // const uploadResponse = await fetch(data.uploadUrl, {
-        //   method: "PUT",
-        //   body: selectedFile,
-        // });
         const uploadResponse = await axios.put(data.uploadUrl, selectedFile, {
           headers: {
             'Content-Type': 'text/plain',
@@ -62,7 +52,6 @@ const ImportDialogueBox = ({onClose}:any) => {
 
         if (uploadResponse.status === 200) {
           console.log("File uploaded successfully!");
-          setUploadComplete(true);
           onClose();
           handleClear();
         } else {
@@ -90,6 +79,7 @@ const ImportDialogueBox = ({onClose}:any) => {
     <>
   
     {uploadProgress? (
+      // PROGRESS BAR
       <Box
       display={"flex"}
       justifyContent={"center"}
@@ -150,6 +140,7 @@ const ImportDialogueBox = ({onClose}:any) => {
         </Box>
     ):
     (
+      // MAIN FRAME
     <Box
             display={"flex"}
             width={"900px"}
@@ -220,7 +211,7 @@ const ImportDialogueBox = ({onClose}:any) => {
                     fontFamily={"Inter"}
                     fontSize={"24px"}
                     fontStyle={"normal"}
-                    fontWeight={"500"}
+                    fontWeight={"600"}
                     lineHeight={"32px"}
                   >
                     Prepare Your Hindsite Import
@@ -271,7 +262,7 @@ const ImportDialogueBox = ({onClose}:any) => {
                       fontFamily={"Inter"}
                       fontSize={"16px"}
                       fontStyle={"normal"}
-                      fontWeight={"500"}
+                      fontWeight={"600"}
                       lineHeight={"24px"}
                     >
                       Step 1. Create Hindsite Backup
@@ -305,7 +296,7 @@ const ImportDialogueBox = ({onClose}:any) => {
                       fontFamily={"Inter"}
                       fontSize={"16px"}
                       fontStyle={"normal"}
-                      fontWeight={"500"}
+                      fontWeight={"600"}
                       lineHeight={"24px"}
                     >
                       Step 2. Unzip Hindsite Backup File
@@ -339,7 +330,7 @@ const ImportDialogueBox = ({onClose}:any) => {
                       fontFamily={"Inter"}
                       fontSize={"16px"}
                       fontStyle={"normal"}
-                      fontWeight={"500"}
+                      fontWeight={"600"}
                       lineHeight={"24px"}
                     >
                       Step 3. Upload Your Backup File Here
@@ -425,7 +416,7 @@ const ImportDialogueBox = ({onClose}:any) => {
                                   fontFamily={"Inter"}
                                   fontSize={"18px"}
                                   fontStyle={"normal"}
-                                  fontWeight={"500"}
+                                  fontWeight={"600"}
                                   lineHeight={"20px"}
                                 >
                                   File Successfully Uploaded
@@ -553,9 +544,7 @@ const ImportDialogueBox = ({onClose}:any) => {
                 
               </Box>
             </Box>
-            {uploadComplete && (
-            <CompleteSuccess onClose={() => setUploadComplete(false)} />
-          )}</Box>
+        </Box>
 )}
     </>
   );
