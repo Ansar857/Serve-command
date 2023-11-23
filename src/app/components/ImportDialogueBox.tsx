@@ -516,7 +516,7 @@ const ImportDialogueBox = ({onClose}:any) => {
             fontWeight={600}
             lineHeight={{ "2xl": "28px" }}
           >
-            Import in Progress...
+            Import in Progress...{uploadProgress}
           </Text>
 
           <Progress value={90} />
