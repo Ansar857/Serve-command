@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
 import axios from "axios";
-import Successfull from "./Successfull";
+import Card from "./Card";
 
 const ImportDialogueBox = ({onClose}:any) => {
   // const { isOpen, onOpen, onClose } = useDisclosure();
@@ -562,7 +562,7 @@ const ImportDialogueBox = ({onClose}:any) => {
           </Box>
     )}
 
-{complete && <Successfull/>}
+{complete && <Card/> }
     
     </>
   );
