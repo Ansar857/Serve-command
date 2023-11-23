@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
 import axios from "axios";
-import Successfull from "./successfull";
+import Successfull from "./Successfull";
 
 const ImportDialogueBox = ({onClose}:any) => {
   // const { isOpen, onOpen, onClose } = useDisclosure();
