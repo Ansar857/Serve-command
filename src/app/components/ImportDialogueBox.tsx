@@ -518,7 +518,6 @@ const ImportDialogueBox = ({onClose}:any) => {
           >
             Import in Progress...{uploadProgress}
           </Text>
-
           <Progress value={90} />
         </Box>
         <Box
