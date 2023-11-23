@@ -148,9 +148,7 @@ const ImportDialogueBox = ({onClose}:any) => {
         </Box>
       </Box>
         </Box>
-    ): uploadComplete ? (
-      <CompleteSuccess onClose={() => setUploadComplete(false)} />
-    ) :
+    ):
     (
     <Box
             display={"flex"}
@@ -555,7 +553,9 @@ const ImportDialogueBox = ({onClose}:any) => {
                 
               </Box>
             </Box>
-      </Box>
+            {uploadComplete && (
+            <CompleteSuccess onClose={() => setUploadComplete(false)} />
+          )}</Box>
 )}
     </>
   );
