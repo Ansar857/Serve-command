@@ -84,7 +84,7 @@ const ImportDialogueBox = ({onClose}:any) => {
   return (
     <>
   
-    {progress? (
+    {uploadProgress==1? (
       <Box
       display={"flex"}
       justifyContent={"center"}
