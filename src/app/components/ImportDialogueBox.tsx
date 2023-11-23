@@ -17,7 +17,7 @@ const ImportDialogueBox = ({onClose}:any) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const isSubmitDisabled = !selectedFile;
   const [uploadProgress, setUploadProgress] = useState<number>(0);
-  const [progress , setProgress] = useState(false)
+  const [uploadComplete, setUploadComplete] = useState(false);
 
   // const [file, setFile] = useState<File | null>(null);
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,10 +39,6 @@ const ImportDialogueBox = ({onClose}:any) => {
       const data = await response.json();
       console.log(data);
       if (data.uploadUrl) {
-        // const uploadResponse = await fetch(data.uploadUrl, {
-        //   method: "PUT",
-        //   body: selectedFile,
-        // });
         const uploadResponse = await axios.put(data.uploadUrl, selectedFile, {
           headers: {
             'Content-Type': 'text/plain',
@@ -59,7 +55,6 @@ const ImportDialogueBox = ({onClose}:any) => {
           console.log("File uploaded successfully!");
           onClose();
           handleClear();
-          setProgress(true)
         } else {
           alert("File upload failed ");
           console.log(uploadResponse.data)
@@ -80,6 +75,12 @@ const ImportDialogueBox = ({onClose}:any) => {
     }
   };
 
+    // Check if upload is complete
+    if (uploadProgress === 100 && !uploadComplete) {
+      // If upload is complete, set uploadComplete to true
+      setUploadComplete(true);
+    }
+
   return (
     <>
   
@@ -89,8 +90,6 @@ const ImportDialogueBox = ({onClose}:any) => {
       justifyContent={"center"}
       flexDirection={"column"}
       alignItems={"center"}
-      // h={{"2xl":"1080px"}}
-      // w={{"2xl":"1920px"}}
     >
       <Box
         display={"flex"}
@@ -550,6 +549,17 @@ const ImportDialogueBox = ({onClose}:any) => {
             </Box>
           </Box>
     )}
+    {uploadComplete && (
+          <Box
+            mt="4"
+            p="4"
+            borderRadius="8px"
+            background="green.200"
+            textAlign="center"
+          >
+            <Text>Done! Upload Completed.</Text>
+          </Box>
+        )}
     </>
   );
 };
