@@ -17,7 +17,6 @@ const ImportDialogueBox = ({onClose}:any) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const isSubmitDisabled = !selectedFile;
   const [uploadProgress, setUploadProgress] = useState<number>(0);
-  const [progress , setProgress] = useState(false)
 
   // const [file, setFile] = useState<File | null>(null);
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -83,7 +82,7 @@ const ImportDialogueBox = ({onClose}:any) => {
   return (
     <>
   
-    {progress? (
+    {uploadProgress? (
       <Box
       display={"flex"}
       justifyContent={"center"}
