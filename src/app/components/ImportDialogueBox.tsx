@@ -20,6 +20,7 @@ const ImportDialogueBox = ({onClose}:any) => {
   const [uploadProgress, setUploadProgress] = useState<number>(0);
   const [uploadComplete, setUploadComplete] = useState<boolean>(false);
 
+
   
 
   // const [file, setFile] = useState<File | null>(null);
@@ -59,14 +60,16 @@ const ImportDialogueBox = ({onClose}:any) => {
           },
         });
 
-        if (uploadResponse.status == 200) {
+        if (uploadResponse.status === 200) {
           console.log("File uploaded successfully!");
+          setUploadComplete(true);
           onClose();
           handleClear();
         } else {
           alert("File upload failed ");
-          console.log(uploadResponse.data)
+          console.log(uploadResponse.data);
         }
+        
       } else {
         alert("Failed to get pre-signed URL");
       }
@@ -149,8 +152,7 @@ const ImportDialogueBox = ({onClose}:any) => {
       <CompleteSuccess onClose={() => setUploadComplete(false)} />
     ) :
     (
-
-          <Box
+    <Box
             display={"flex"}
             width={"900px"}
             padding={"32px 40px"}
@@ -553,8 +555,8 @@ const ImportDialogueBox = ({onClose}:any) => {
                 
               </Box>
             </Box>
-          </Box>
-    )}
+      </Box>
+)}
     </>
   );
 };
