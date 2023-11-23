@@ -7,7 +7,7 @@ import {
   Progress,
   Input,
 } from "@chakra-ui/react";
-import React, { useRef, useState , useEffect } from "react";
+import React, { useRef, useState } from "react";
 import axios from "axios";
 
 const ImportDialogueBox = ({onClose}:any) => {
@@ -17,7 +17,7 @@ const ImportDialogueBox = ({onClose}:any) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const isSubmitDisabled = !selectedFile;
   const [uploadProgress, setUploadProgress] = useState<number>(0);
-  const [uploadComplete, setUploadComplete] = useState(false);
+  const [progress , setProgress] = useState(false)
 
   // const [file, setFile] = useState<File | null>(null);
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,6 +32,7 @@ const ImportDialogueBox = ({onClose}:any) => {
       alert("Please select a file to upload");
       return;
     }
+
     try {
       const response = await fetch(
         `https://830wrvbmz2.execute-api.us-east-1.amazonaws.com/generatepresignedurl?fileName=${selectedFile.name}&contentType=text/plain`
@@ -39,6 +40,10 @@ const ImportDialogueBox = ({onClose}:any) => {
       const data = await response.json();
       console.log(data);
       if (data.uploadUrl) {
+        // const uploadResponse = await fetch(data.uploadUrl, {
+        //   method: "PUT",
+        //   body: selectedFile,
+        // });
         const uploadResponse = await axios.put(data.uploadUrl, selectedFile, {
           headers: {
             'Content-Type': 'text/plain',
@@ -75,26 +80,17 @@ const ImportDialogueBox = ({onClose}:any) => {
     }
   };
 
-  useEffect(() => {
-    if (uploadProgress === 100) {
-      // Add a delay before showing the success box
-      const delayTimeout = setTimeout(() => {
-        setUploadComplete(true);
-      }, 1000); // Adjust the delay as needed
-
-      return () => clearTimeout(delayTimeout);
-    }
-  }, [uploadProgress]);
-
   return (
     <>
   
-    {uploadProgress? (
+    {progress? (
       <Box
       display={"flex"}
       justifyContent={"center"}
       flexDirection={"column"}
       alignItems={"center"}
+      // h={{"2xl":"1080px"}}
+      // w={{"2xl":"1920px"}}
     >
       <Box
         display={"flex"}
@@ -554,17 +550,6 @@ const ImportDialogueBox = ({onClose}:any) => {
             </Box>
           </Box>
     )}
-    {uploadComplete && (
-          <Box
-            mt="4"
-            p="4"
-            borderRadius="8px"
-            background="green.200"
-            textAlign="center"
-          >
-            <Text>Done! Upload Completed.</Text>
-          </Box>
-        )}
     </>
   );
 };
