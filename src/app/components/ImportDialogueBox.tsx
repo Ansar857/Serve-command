@@ -71,47 +71,6 @@ const ImportDialogueBox = ({onClose}:any) => {
 
   return (
     <>
-      {/* Card Button */}
-      {/* <Button
-        display={"flex"}
-        height={"32px"}
-        padding={"0px 12px"}
-        justifyContent={"center"}
-        alignItems={"center"}
-        gap={"8px"}
-        border={"1px solid var(--primary-main, #11190C)"}
-        borderRadius={"6px"}
-        onClick={onOpen}
-      >
-        <Box width={"14px"} height={"14px"}>
-          <Image src="/upload_icon.svg" />
-        </Box>
-        <Text
-          color={"var(--primary-main, #11190C)"}
-          fontFamily={"Inter"}
-          fontSize={"14px"}
-          fontStyle={"normal"}
-          fontWeight={"600"}
-          lineHeight={"20px"}
-        >
-          Import
-        </Text>
-      </Button> */}
-      {/* <AlertDialog
-        motionPreset="slideInBottom"
-        leastDestructiveRef={cancelRef}
-        onClose={onClose}
-        isOpen={isOpen}
-        isCentered
-      >
-        <AlertDialogOverlay />
-        <AlertDialogContent
-          display={"flex"}
-          justifyContent={"center"}
-          alignItems={"center"}
-        >
-        </AlertDialogContent>
-      </AlertDialog> */}
           <Box
             display={"flex"}
             width={"900px"}
