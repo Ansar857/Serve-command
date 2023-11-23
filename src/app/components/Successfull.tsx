@@ -12,7 +12,7 @@ import {
   AlertDialogFooter,
 } from "@chakra-ui/react";
 
-const ImportProgress = () => {
+const Successfull = () => {
 
   const [isOpen, setIsOpen] = useState(false);
   const cancelRef = useRef(null);
@@ -104,4 +104,4 @@ const ImportProgress = () => {
   );
 };
 
-export default ImportProgress;
+export default Successfull;
