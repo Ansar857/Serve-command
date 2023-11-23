@@ -87,7 +87,7 @@ const ImportDialogueBox = ({onClose}:any) => {
       const delayTimeout = setTimeout(() => {
         setUploadComplete(true);
       
-      }, 1000);
+      }, 100);
     }
 
   return (
