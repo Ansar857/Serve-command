@@ -11,7 +11,8 @@ import {
   Input,
 } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
-import CategorySelection from "./CategorySelection";
+import axios from "axios";
+import Link from "next/link";
 
 const ImportDialogueBox = ({onClose}:any) => {
   // const { isOpen, onOpen, onClose } = useDisclosure();
@@ -19,6 +20,7 @@ const ImportDialogueBox = ({onClose}:any) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const isSubmitDisabled = !selectedFile;
+  const [uploadProgress, setUploadProgress] = useState<number>(0);
 
   // const [file, setFile] = useState<File | null>(null);
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,12 +43,23 @@ const ImportDialogueBox = ({onClose}:any) => {
       const data = await response.json();
       console.log(data);
       if (data.uploadUrl) {
-        const uploadResponse = await fetch(data.uploadUrl, {
-          method: "PUT",
-          body: selectedFile,
+        // const uploadResponse = await fetch(data.uploadUrl, {
+        //   method: "PUT",
+        //   body: selectedFile,
+        // });
+        const uploadResponse = await axios.put(data.uploadUrl, selectedFile, {
+          headers: {
+            'Content-Type': 'text/plain',
+          },
+          onUploadProgress: (progressEvent: any) => {
+            const { loaded, total }:any = progressEvent;
+            const percentCompleted = Math.round((loaded * 100) / total);
+            console.log("total time for file upload is....", percentCompleted)
+            setUploadProgress(percentCompleted);
+          },
         });
 
-        if (uploadResponse.ok) {
+        if (uploadResponse.data) {
           console.log("File uploaded successfully!");
           onClose();
           handleClear();
@@ -455,6 +468,9 @@ const ImportDialogueBox = ({onClose}:any) => {
                 </Button>
 
                 {/* Import Button */}
+                <Link
+                href={'/Test'}>
+                
                 <Button
                   display={"flex"}
                   height={"32px"}
@@ -470,6 +486,7 @@ const ImportDialogueBox = ({onClose}:any) => {
                 >
                   Begin Import
                 </Button>
+                </Link>
               </Box>
             </Box>
           </Box>
