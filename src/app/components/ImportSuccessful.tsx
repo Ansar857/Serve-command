@@ -6,8 +6,6 @@ const page = () => {
     const [isDone, setIsDone] = useState<boolean>(false);
 
     return (
-        <Box >
-    
                 <Box
                     display={"flex"}
                     width={{ sm: "", "lg": "432px" }}
@@ -65,9 +63,6 @@ const page = () => {
                         </Box>
                     </chakra.button>
                 </Box>
-
-        </Box>
-
     )
 }
 
