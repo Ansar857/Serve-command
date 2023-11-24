@@ -7,7 +7,7 @@ const page = () => {
 
     return (
         <>
-        {isDone? (
+        
                 <Box
                 display={"flex"}
                 width={{ sm: "", "lg": "432px" }}
@@ -65,9 +65,7 @@ const page = () => {
                     </Box>
                 </chakra.button>
         </Box>
-        ) : (
-            <div>Hello</div>
-        ) }
+        
            
             </>
     )
