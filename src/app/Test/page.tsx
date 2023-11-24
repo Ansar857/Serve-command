@@ -1,74 +1,310 @@
-"use client"
-import { Box, chakra, Text, Image } from '@chakra-ui/react'
-import { useState } from 'react'
+"use client";
+import {Button,Menu,MenuButton,MenuList,MenuItem,Box,Text,Image} from "@chakra-ui/react";
 
-const page = () => {
-    const [isDone, setIsDone] = useState<boolean>(false);
-
-    return (
-        <Box >
-    
-                <Box
-                    display={"flex"}
-                    width={{ sm: "", "lg": "432px" }}
-                    padding={{ sm: "", "lg": "32px" }}
-                    flexDir={"column"}
-                    justifyContent={"center"}
-                    alignItems={"center"}
-                    gap={{ sm: "", "lg": "32px" }}
-                    borderRadius={'24px'}
-                    bg={'var(--white-100, #FFF)'}
-                    shadow={'0px 24px 48px 0px rgba(90, 91, 106, 0.08), 0px 12px 24px 0px rgba(58, 58, 68, 0.08)'}
-                >
-                    <Box>
-                        <Text
-                            color={"var(--primary-main, #11190C)"}
-                            fontFamily={"Inter"}
-                            fontSize={{ sm: "16px", lg: "20px" }}
-                            fontStyle={"normal"}
-                            fontWeight={{ sm: "400", lg: "600" }}
-                            lineHeight={{ sm: "20px", lg: "28px" }}
-                        >
-                            Import Successful!
-                        </Text>
-                    </Box>
+const NestedMenu = () => {
+  return (
+    <Menu>
+      {({ isOpen }) => (
+        <>
+          <MenuButton
+            as={Button}
+            isActive={isOpen}
+            _hover={{ bg: "transparent" }}
+            _expanded={{ bg: "transparent" }}
+            _focus={{ boxShadow: "none" }}
+          >
+            <Box
+              display={"flex"}
+              width={"320px"}
+              height={"32px"}
+              padding={"6px 8px 6px 12px"}
+              justifyContent={"flex-end"}
+              alignItems={"flex-start"}
+              gap={"12px"}
+              flexShrink={"0"}
+              borderRadius={"6px"}
+              border={"1px solid var(--gray-200, #E2E8F0)"}
+              background={"var(--white, #FFF)"}
+            >
+              <Text
+                width={"268px"}
+                flexShrink={"0"}
+                color={"var(--gray-500, #718096)"}
+                fontFamily={"Inter"}
+                fontSize={"14px"}
+                fontStyle={"normal"}
+                fontWeight={"400"}
+                lineHeight={"20px"}
+              >
+                Select Data Type
+              </Text>
+              <Image src="/down.svg" width={"20px"} height={"20px"} />
+            </Box>
+          </MenuButton>
+          <MenuList
+            display={"flex"}
+            width={"320px"}
+            padding={"10px"}
+            flexDirection={"column"}
+            alignItems={"flex-start"}
+            gap={"10px"}
+            borderRadius={"6px"}
+            background={"#FFF"}
+            boxShadow={
+              "0px 4px 6px -1px rgba(0, 0, 0, 0.10), 0px 2px 4px -1px rgba(0, 0, 0, 0.06)"
+            }
+          >
+            <Menu placement="right-start">
+              {({ isOpen: isNestedOpen }) => (
+                <>
+                  <MenuButton
+                    as={Button}
+                    isActive={isNestedOpen}
+                    _hover={{ bg: "transparent" }}
+                    _expanded={{
+                      bg: "var(--primary-states-hover, rgba(17, 25, 12, 0.04))",
+                    }}
+                    _focus={{ boxShadow: "none" }}
+                  >
                     <Box
-                        width={{ sm: "", "lg": "117px" }}
-                        height={{ sm: "", "lg": "117px" }}
+                      display={"flex"}
+                      padding={"6px 12px"}
+                      alignItems={"center"}
+                      gap={"10px"}
+                      alignSelf={"stretch"}
                     >
-                        <Image src={"/checkCircle.svg"} alt={"circle"} />
+                      <Image
+                        width={"20px"}
+                        height={"20px"}
+                        src={"/folder.svg"}
+                        alt={"folderIcon"}
+                      />
+                      <Text
+                        flex={"1 0 0"}
+                        color={"#000"}
+                        fontFamily={"Inter"}
+                        fontSize={"18px"}
+                        fontStyle={"normal"}
+                        fontWeight={"400"}
+                        lineHeight={"28px"}
+                        width={"216px"}
+                      >
+                        Service Category
+                      </Text>
+                      <Image
+                        width={"20px"}
+                        height={"20px"}
+                        src={"/rightOpen.svg"}
+                        alt={"folderIcon"}
+                      />
                     </Box>
-                    <chakra.button
-                        onClick={() => setIsDone(true)}
+                  </MenuButton>
+
+                  <MenuList
+                    style={{
+                      position: "absolute",
+                      top: 10,
+                      margin: 10,
+                    }}
+                  >
+                    <Box
+                      display={"flex"}
+                      width={"335px"}
+                      padding={"10px"}
+                      flexDirection={"column"}
+                      alignItems={"flex-start"}
+                      gap={"10px"}
+                      borderRadius={"6px"}
+                      background={"#FFF"}
+                      boxShadow={
+                        "0px 4px 6px -1px rgba(0, 0, 0, 0.10), 0px 2px 4px -1px rgba(0, 0, 0, 0.06)"
+                      }
                     >
+                      <MenuItem
+                        _active={{
+                          bg: "var(--primary-states-hover, rgba(17, 25, 12, 0.04))",
+                        }}
+                      >
                         <Box
-                            display={"flex"}
-                            alignItems={"center"}
-                            justifyContent={"center"}
-                            gap={{ sm: "", "lg": "8px" }}
-                            height={{ sm: "", "lg": "32px" }}
-                            padding={{ sm: "", "lg": "0px 12px" }}
-                            border={"1px solid var(--gray-200, #E2E8F0)"}
-                            borderRadius={"6px"}
-                            background={"#000"}
+                          display={"flex"}
+                          padding={"6px 12px"}
+                          alignItems={"center"}
+                          gap={"10px"}
+                          alignSelf={"stretch"}
+                          borderRadius={"6px"}
                         >
-                            <Text
-                                color={" #FFF"}
-                                fontFamily={"Inter"}
-                                fontSize={{ sm: "", "lg": "14px" }}
-                                fontStyle={"normal"}
-                                fontWeight={{ sm: "", "lg": "600" }}
-                                lineHeight={{ sm: "20px", "lg": "20px" }}
-                            >
-                                Done
-                            </Text>
+                          <Text
+                            flex={"1 0 0"}
+                            color={"#000"}
+                            fontFamily={"Inter"}
+                            fontSize={"18px"}
+                            fontStyle={"normal"}
+                            fontWeight={"500"}
+                            lineHeight={"28px"}
+                          >
+                            Landscape Irrigation
+                          </Text>
                         </Box>
-                    </chakra.button>
-                </Box>
+                      </MenuItem>
 
-        </Box>
+                      <MenuItem
+                        _active={{
+                          bg: "var(--primary-states-hover, rgba(17, 25, 12, 0.04))",
+                        }}
+                      >
+                        <Box
+                          display={"flex"}
+                          padding={"6px 12px"}
+                          alignItems={"center"}
+                          gap={"10px"}
+                          alignSelf={"stretch"}
+                          borderRadius={"6px"}
+                        >
+                          <Text
+                            flex={"1 0 0"}
+                            color={"#000"}
+                            fontFamily={"Inter"}
+                            fontSize={"18px"}
+                            fontStyle={"normal"}
+                            fontWeight={"500"}
+                            lineHeight={"28px"}
+                            width={"291px"}
+                          >
+                            Low Voltage Landscape Lighting
+                          </Text>
+                        </Box>
+                      </MenuItem>
+                    </Box>
+                  </MenuList>
+                </>
+              )}
+            </Menu>
+            <Menu placement="right-start">
+              {({ isOpen: isNestedOpen }) => (
+                <>
+                  <MenuButton
+                    as={Button}
+                    isActive={isNestedOpen}
+                    _hover={{ bg: "transparent" }}
+                    _expanded={{
+                      bg: "var(--primary-states-hover, rgba(17, 25, 12, 0.04))",
+                    }}
+                    _focus={{ boxShadow: "none" }}
+                  >
+                    <Box
+                      display={"flex"}
+                      padding={"6px 12px"}
+                      alignItems={"center"}
+                      gap={"10px"}
+                      alignSelf={"stretch"}
+                    >
+                      <Image
+                        width={"20px"}
+                        height={"20px"}
+                        src={"/userCat.svg"}
+                        alt={"folderIcon"}
+                      />
+                      <Text
+                        flex={"1 0 0"}
+                        color={"#000"}
+                        fontFamily={"Inter"}
+                        fontSize={"18px"}
+                        fontStyle={"normal"}
+                        fontWeight={"400"}
+                        lineHeight={"28px"}
+                        width={"216px"}
+                      >
+                        Client Information
+                      </Text>
+                      <Image
+                        width={"20px"}
+                        height={"20px"}
+                        src={"/rightOpen.svg"}
+                        alt={"folderIcon"}
+                      />
+                    </Box>
+                  </MenuButton>
 
-    )
-}
+                  <MenuList
+                    style={{
+                      position: "absolute",
+                      top: 10,
+                      margin: 10,
+                    }}
+                  >
+                    <Box
+                      display="flex"
+                      width="335px"
+                      padding="10px"
+                      flexDirection="column"
+                      alignItems="flex-start"
+                      gap="10px"
+                      borderRadius="6px"
+                    >
+                      <MenuItem
+                        _active={{
+                          bg: "var(--primary-states-hover, rgba(17, 25, 12, 0.04))",
+                        }}
+                      >
+                        <Box
+                          display={"flex"}
+                          padding={"6px 12px"}
+                          alignItems={"center"}
+                          gap={"10px"}
+                          alignSelf={"stretch"}
+                          borderRadius={"6px"}
+                        >
+                          <Text
+                            flex={"1 0 0"}
+                            color={"#000"}
+                            fontFamily={"Inter"}
+                            fontSize={"18px"}
+                            fontStyle={"normal"}
+                            fontWeight={"500"}
+                            lineHeight={"28px"}
+                          >
+                            Client Since
+                          </Text>
+                        </Box>
+                      </MenuItem>
 
-export default page
+                      <MenuItem
+                        _active={{
+                          bg: "var(--primary-states-hover, rgba(17, 25, 12, 0.04))",
+                        }}
+                      >
+                        <Box
+                          display={"flex"}
+                          padding={"6px 12px"}
+                          alignItems={"center"}
+                          gap={"10px"}
+                          alignSelf={"stretch"}
+                          borderRadius={"6px"}
+                        >
+                          <Text
+                            flex={"1 0 0"}
+                            color={"#000"}
+                            fontFamily={"Inter"}
+                            fontSize={"18px"}
+                            fontStyle={"normal"}
+                            fontWeight={"500"}
+                            lineHeight={"28px"}
+                            width={"291px"}
+                          >
+                            Referred By
+                          </Text>
+                        </Box>
+                      </MenuItem>
+                    </Box>
+                  </MenuList>
+                </>
+              )}
+            </Menu>
+          </MenuList>
+        </>
+      )}
+    </Menu>
+  );
+};
+
+export default NestedMenu;
