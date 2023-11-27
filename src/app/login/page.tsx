@@ -47,8 +47,8 @@ const page = () => {
         setSession(authResponse.Session);
       } else {
         setMessage("Login successful.");
-        console.log("Login Successful");
-        router.push("/");
+        console.log("Login Successful" , authResponse.AuthenticationResult);
+        // router.push("/");
       }
     } catch (error) {
       setMessage(`Error: ${error}`);
