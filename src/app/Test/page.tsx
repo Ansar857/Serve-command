@@ -15,15 +15,15 @@ const NestedMenu = () => {
         }
       };
   return (
-    <Menu
-    closeOnSelect={true}>
+    <Menu >
+      {({ isOpen }) => (
+        <>
           <MenuButton
             as={Button}
+            isActive={isOpen}
             _hover={{ bg: "transparent" }}
             _expanded={{ bg: "transparent" }}
             _focus={{ boxShadow: "none" }}
-            background={"var(--white, #FFF)"}
-           
           >
             <Box
               display={"flex"}
@@ -63,13 +63,16 @@ const NestedMenu = () => {
             borderRadius={"6px"}
             background={"#FFF"}
             boxShadow={
-              "0px 4px 6px -1px rgba(0, 0, 0, 0.10), 0px 2px 4px -1px rgba(0, 0, 0, 0.06)"}          
+              "0px 4px 6px -1px rgba(0, 0, 0, 0.10), 0px 2px 4px -1px rgba(0, 0, 0, 0.06)"}
+              
+            
           >
-            <Menu placement="right-start" 
-            closeOnSelect={true}
-            >
+            <Menu placement="right-start"   >
+              {({ isOpen: isNestedOpen }) => (
+                <>
                   <MenuButton
                     as={Button}
+                    isActive={isNestedOpen}
                     _hover={{ bg: "transparent" }}
                     _expanded={{
                       bg: "var(--primary-states-hover, rgba(17, 25, 12, 0.04))",
@@ -105,30 +108,31 @@ const NestedMenu = () => {
                         width={"20px"}
                         height={"20px"}
                         src={"/rightOpen.svg"}
-                        alt={"folderIcon"}/>
+                        alt={"folderIcon"}
+                      />
                     </Box>
                   </MenuButton>
 
                   <MenuList
                     style={{
                       position: "absolute",
-                  
+                      top: 10,
                       margin: 10,
-                      top:-20
-                   
                     }}
                   >
                     <Box
                       display={"flex"}
                       width={"335px"}
-                      // padding={"10px"}
+                      padding={"10px"}
                       flexDirection={"column"}
                       alignItems={"flex-start"}
-                      // gap={"10px"}
+                      gap={"10px"}
                       borderRadius={"6px"}
                       background={"#FFF"}
-                      // boxShadow={"0px 4px 6px -1px rgba(0, 0, 0, 0.10), 0px 2px 4px -1px rgba(0, 0, 0, 0.06)"}
-                      >
+                      boxShadow={
+                        "0px 4px 6px -1px rgba(0, 0, 0, 0.10), 0px 2px 4px -1px rgba(0, 0, 0, 0.06)"
+                      }
+                    >
                       <MenuItem
                         _active={{
                           bg: "var(--primary-states-hover, rgba(17, 25, 12, 0.04))",
@@ -138,7 +142,7 @@ const NestedMenu = () => {
                           display={"flex"}
                           padding={"6px 12px"}
                           alignItems={"center"}
-                        // gap={"10px"}
+                          gap={"10px"}
                           alignSelf={"stretch"}
                           borderRadius={"6px"}
                         >
@@ -194,10 +198,133 @@ const NestedMenu = () => {
                       </MenuItem>
                     </Box>
                   </MenuList>
-              
-              
+                </>
+              )}
             </Menu>
-          </MenuList> 
+            <Menu placement="right-start">
+              {({ isOpen: isNestedOpen }) => (
+                <>
+                  <MenuButton
+                    as={Button}
+                    isActive={isNestedOpen}
+                    _hover={{ bg: "transparent" }}
+                    _expanded={{
+                      bg: "var(--primary-states-hover, rgba(17, 25, 12, 0.04))",
+                    }}
+                    _focus={{ boxShadow: "none" }}
+                  >
+                    <Box
+                      display={"flex"}
+                      padding={"6px 12px"}
+                      alignItems={"center"}
+                      gap={"10px"}
+                      alignSelf={"stretch"}
+                    >
+                      <Image
+                        width={"20px"}
+                        height={"20px"}
+                        src={"/userCat.svg"}
+                        alt={"folderIcon"}
+                      />
+                      <Text
+                        flex={"1 0 0"}
+                        color={"#000"}
+                        fontFamily={"Inter"}
+                        fontSize={"18px"}
+                        fontStyle={"normal"}
+                        fontWeight={"400"}
+                        lineHeight={"28px"}
+                        width={"216px"}
+                      >
+                        Client Information
+                      </Text>
+                      <Image
+                        width={"20px"}
+                        height={"20px"}
+                        src={"/rightOpen.svg"}
+                        alt={"folderIcon"}
+                      />
+                    </Box>
+                  </MenuButton>
+
+                  <MenuList
+                    style={{
+                      position: "absolute",
+                      top: 10,
+                      margin: 10,
+                    }}
+                  >
+                    <Box
+                      display="flex"
+                      width="335px"
+                      padding="10px"
+                      flexDirection="column"
+                      alignItems="flex-start"
+                      gap="10px"
+                      borderRadius="6px"
+                    >
+                      <MenuItem
+                        _active={{
+                          bg: "var(--primary-states-hover, rgba(17, 25, 12, 0.04))",
+                        }}
+                      >
+                        <Box
+                          display={"flex"}
+                          padding={"6px 12px"}
+                          alignItems={"center"}
+                          gap={"10px"}
+                          alignSelf={"stretch"}
+                          borderRadius={"6px"}
+                        >
+                          <Text
+                            flex={"1 0 0"}
+                            color={"#000"}
+                            fontFamily={"Inter"}
+                            fontSize={"18px"}
+                            fontStyle={"normal"}
+                            fontWeight={"500"}
+                            lineHeight={"28px"}
+                          >
+                            Client Since
+                          </Text>
+                        </Box>
+                      </MenuItem>
+
+                      <MenuItem
+                        _active={{
+                          bg: "var(--primary-states-hover, rgba(17, 25, 12, 0.04))",
+                        }}
+                      >
+                        <Box
+                          display={"flex"}
+                          padding={"6px 12px"}
+                          alignItems={"center"}
+                          gap={"10px"}
+                          alignSelf={"stretch"}
+                          borderRadius={"6px"}
+                        >
+                          <Text
+                            flex={"1 0 0"}
+                            color={"#000"}
+                            fontFamily={"Inter"}
+                            fontSize={"18px"}
+                            fontStyle={"normal"}
+                            fontWeight={"500"}
+                            lineHeight={"28px"}
+                            width={"291px"}
+                          >
+                            Referred By
+                          </Text>
+                        </Box>
+                      </MenuItem>
+                    </Box>
+                  </MenuList>
+                </>
+              )}
+            </Menu>
+          </MenuList>
+        </>
+      )}
     </Menu>
   );
 };

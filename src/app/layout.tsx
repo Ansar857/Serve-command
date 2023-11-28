@@ -2,7 +2,6 @@
 "use client";
 
 import { Providers } from "./provider";
-import Sidebar from "./components/Sidebar";
 import "../app/globals.css";
 import { Box } from "@chakra-ui/react";
 export default function RootLayout({
