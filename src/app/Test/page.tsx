@@ -7,13 +7,7 @@ const NestedMenu = () => {
     const [catName , setCatName]  = useState('Select Data Type')
     const [selected , setSelected] = useState(false)
 
-    const handleMenuClose = () => {
-        if (selected) {
-          // Close the menu only if selected is false
-          // You can add additional logic here if needed
-          // For example, you might want to reset the selected state to false
-        }
-      };
+    
   return (
     <Menu >
       {({ isOpen }) => (
